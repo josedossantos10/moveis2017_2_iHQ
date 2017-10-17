@@ -23,6 +23,7 @@ public class SegundaActivity extends BaseActivity {
 
         Intent i = getIntent();
 
+
         String nome = i.getStringExtra(PUT_EXTRA_NOME);
 
         tvNotificacao.setText("Seja Bem Vindo " + nome);
