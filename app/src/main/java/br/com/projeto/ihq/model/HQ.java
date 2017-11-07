@@ -10,6 +10,15 @@ public class HQ {
     private Date publicacao;
     private Date ultimaVisualizacao;
     private int volume;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public HQ(int id, String titulo, String descricao) {
         this.id = id;

@@ -77,7 +77,7 @@ public class HQListActivity extends BaseActivity implements ListView.OnItemClick
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         criarBotoesAlerta();
-        dialog.setMessage("você clicou no " + dao.getHQ(position).getTitulo());
+        dialog.setMessage("você clicou no " + dao.getHQ(position).getDescricao());
         dialog.show();
     }
 
