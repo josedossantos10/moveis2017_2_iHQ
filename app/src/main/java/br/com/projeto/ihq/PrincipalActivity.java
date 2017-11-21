@@ -181,7 +181,9 @@ public class PrincipalActivity extends AppCompatActivity
         //inflamos o layout alerta.xml na view
         dialog = new Builder(this);
         dialog.setView(li.inflate(R.layout.dialog_layout, null));
+
         alerta = dialog.create();
+
         alerta.show();
     }
 
