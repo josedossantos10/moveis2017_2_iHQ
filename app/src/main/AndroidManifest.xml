@@ -20,8 +20,7 @@
         <activity android:name=".CadastroUsuarioActivity" />
         <activity
             android:name=".PrincipalActivity"
-            android:label="@string/title_activity_principal"
-            android:theme="@style/AppTheme.Dark"></activity>
+            android:label="@string/title_activity_principal"></activity>
     </application>
 
 </manifest>

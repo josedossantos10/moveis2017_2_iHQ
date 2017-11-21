@@ -9,4 +9,6 @@
     <string name="action_settings">Settings</string>
     <string name="novo_hq">Nova HQ</string>
     <string name="novo_album">Novo Álbum</string>
+    <string name="remove">Remvoer</string>
+    <string name="editar">Editar</string>
 </resources>
