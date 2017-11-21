@@ -1,10 +1,14 @@
 package br.com.projeto.ihq;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -36,6 +40,8 @@ public class PrincipalActivity extends AppCompatActivity
     private RecyclerView recyclerView;
 
     private FloatingActionMenu menuFloat;
+    private AlertDialog.Builder dialog;
+    private AlertDialog alerta;
 
 
     @Override
@@ -168,6 +174,27 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     public void novoAlbum(View view) {
+        LayoutInflater li = getLayoutInflater();
+
+        //inflamos o layout alerta.xml na view
+
+        dialog = new Builder(this);
+        dialog.setView(li.inflate(R.layout.dialog_layout, null))
+                // Add action buttons
+                .setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // sign in the user ...
+                        Toast.makeText(PrincipalActivity.this, "Salvar", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(PrincipalActivity.this, "Cancelar", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        alerta = dialog.create();
+        alerta.show();
     }
 
     public void novaHq(View view) {
