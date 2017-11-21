@@ -3,6 +3,8 @@ package br.com.projeto.ihq;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,7 +19,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -25,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.projeto.ihq.adapters.CardHqsAdapter;
+import br.com.projeto.ihq.control.DAOException;
+import br.com.projeto.ihq.dao.FachadaDAO;
 import br.com.projeto.ihq.model.Album;
 import br.com.projeto.ihq.model.HQ;
 
@@ -38,6 +45,7 @@ public class PrincipalActivity extends AppCompatActivity
     private FloatingActionMenu menuFloat;
     private AlertDialog.Builder dialog;
     private AlertDialog alerta;
+    private LayoutInflater li;
 
 
     @Override
@@ -66,9 +74,8 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     private void carregarComponentes() {
-            //this.itensCard = (ListView) findViewById(R.id.listview_item_principal);
-            this.recyclerView = (RecyclerView) findViewById(R.id.recyclerview_principal);
-
+        //this.itensCard = (ListView) findViewById(R.id.listview_item_principal);
+        this.recyclerView = (RecyclerView) findViewById(R.id.recyclerview_principal);
     }
 
 
@@ -170,29 +177,27 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     public void novoAlbum(View view) {
-        LayoutInflater li = getLayoutInflater();
-
+        li = getLayoutInflater();
         //inflamos o layout alerta.xml na view
-
         dialog = new Builder(this);
-        dialog.setView(li.inflate(R.layout.dialog_layout, null))
-                // Add action buttons
-                .setPositiveButton("Salvar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
-                        Toast.makeText(PrincipalActivity.this, "Salvar", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Toast.makeText(PrincipalActivity.this, "Cancelar", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        dialog.setView(li.inflate(R.layout.dialog_layout, null));
         alerta = dialog.create();
         alerta.show();
     }
 
     public void novaHq(View view) {
+    }
+
+    public void salvarAlbum(View view) {
+        try {
+            new FachadaDAO(PrincipalActivity.this).salvarAlbum(new Album());
+            alerta.dismiss();
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelar(View view) {
+        alerta.dismiss();
     }
 }
