@@ -10,7 +10,33 @@ public class HQ {
     private Date publicacao;
     private Date ultimaVisualizacao;
     private int volume;
+    private boolean sincronizado;
     private User user;
+
+    public HQ() {
+        this.sincronizado = false;
+    }
+
+    public HQ(String imagem, String titulo, String descricao, Date publicacao, Date ultimaVisualizacao, int volume, boolean sincronizado, User user) {
+        this.imagem = imagem;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.publicacao = publicacao;
+        this.ultimaVisualizacao = ultimaVisualizacao;
+        this.volume = volume;
+        this.sincronizado = sincronizado;
+        this.sincronizado = false;
+
+        this.user = user;
+    }
+
+    public boolean isSincronizado() {
+        return sincronizado;
+    }
+
+    public void setSincronizado(boolean sincronizado) {
+        this.sincronizado = sincronizado;
+    }
 
     public User getUser() {
         return user;

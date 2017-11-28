@@ -4,6 +4,7 @@ import android.content.Context;
 
 import br.com.projeto.ihq.control.DAOException;
 import br.com.projeto.ihq.model.Album;
+import br.com.projeto.ihq.model.User;
 
 /**
  * Created by prof Heldon on 21/11/2017.

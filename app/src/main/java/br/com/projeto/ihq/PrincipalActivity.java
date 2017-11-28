@@ -34,6 +34,7 @@ import br.com.projeto.ihq.control.DAOException;
 import br.com.projeto.ihq.dao.FachadaDAO;
 import br.com.projeto.ihq.model.Album;
 import br.com.projeto.ihq.model.HQ;
+import br.com.projeto.ihq.util.Util;
 
 
 public class PrincipalActivity extends AppCompatActivity
@@ -191,8 +192,21 @@ public class PrincipalActivity extends AppCompatActivity
     }
 
     public void salvarAlbum(View view) {
+        String titulo = ((EditText)alerta.findViewById(R.id.et_nome_album)).getText().toString();
+        if(titulo.isEmpty()){
+           Toast.makeText(PrincipalActivity.this,"Digite o titulo do album", Toast.LENGTH_SHORT).show();
+            return;
+        }
         try {
+            Album album = new Album();
+            album.setUser(Util.getUsuarioLogado());
+            System.out.println("aqui..............");
+            System.out.println(Util.getUsuarioLogado().getId());
+            System.out.println(album.getUser().getEmail());
+            album.setTitulo(titulo);
             new FachadaDAO(PrincipalActivity.this).salvarAlbum(new Album());
+            Util.exibirmensagem(this, "Album salvo com sucesso");
+            menuFloat.close(true);
             alerta.dismiss();
         } catch (DAOException e) {
             e.printStackTrace();

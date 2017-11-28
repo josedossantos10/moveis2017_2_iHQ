@@ -10,7 +10,28 @@ public class Album {
     private Integer id;
     private String titulo;
     private List<HQ> hqs;
+    private boolean sincronizado;
     private User user;
+
+    public Album() {
+        this.sincronizado = false;
+    }
+
+    public boolean isSincronizado() {
+        return sincronizado;
+    }
+
+    public void setSincronizado(boolean sincronizado) {
+        this.sincronizado = sincronizado;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;
